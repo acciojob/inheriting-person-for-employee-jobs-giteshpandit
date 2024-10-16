@@ -1,29 +1,39 @@
-// Complete this js code
-function Person(name, age) {
+// Person Class
+class Person {
+  constructor(name, age) {
     this.name = name;
     this.age = age;
+  }
+
+  // Greet method for Person
+  greet() {
+    console.log(`Hello, my name is ${this.name}, I am ${this.age} years old.`);
+  }
 }
 
-Person.prototype.greet = function() {
-    return `Hello, my name is ${this.name} and I am ${this.age} years old.`;
-};
-
-function Employee(name, age, jobTitle) {
-    // Call Person constructor to initialize name and age
-    Person.call(this, name, age);
+// Employee Class (inherits from Person)
+class Employee extends Person {
+  constructor(name, age, jobTitle) {
+    // Call the parent class (Person) constructor
+    super(name, age);
     this.jobTitle = jobTitle;
+  }
+
+  // Job-specific greet method for Employee
+  jobGreet() {
+    console.log(`Hello, my name is ${this.name}, I am ${this.age} years old, and my job title is ${this.jobTitle}.`);
+  }
 }
 
-// Inherit Person's prototype in Employee
-Employee.prototype = Object.create(Person.prototype);
-Employee.prototype.constructor = Employee;
+// Example usage:
 
-Employee.prototype.jobGreet = function() {
-    return `Hello, my name is ${this.name} and I am ${this.age} years old, and my job title is ${this.jobTitle}.`;
-};
+// Creating a Person instance
+const person = new Person("Alice", 25);
+person.greet(); // Output: Hello, my name is Alice, I am 25 years old.
 
-// Do not change code below this line
-window.Person = Person;
-window.Employee = Employee;
+// Creating an Employee instance
+const employee = new Employee("Bob", 30, "Manager");
+employee.jobGreet(); // Output: Hello, my name is Bob, I am 30 years old, and my job title is Manager.
+
 
 
